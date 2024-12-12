@@ -1,0 +1,19 @@
+name: Create Branch & PR on Issue Open
+
+on:
+  issues:
+    types: [opened, assigned, closed]
+  pull_request:
+    types: [opened, closed]
+    branches-ignore:
+      - main
+
+jobs:
+  create_branch_pr:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: issue based action
+      uses: robvanderleek/create-issue-branch@main
+      env:
+        GITHUB_TOKEN: ${{ secrets.PAT }}
